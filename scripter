@@ -1,0 +1,6 @@
+#!/bin/bash
+# Skript zum erstellen von Skripten
+fullpath='/home/daniel/bin/'$1
+echo '#!/bin/bash' >> $fullpath
+vim $fullpath
+chmod +x $fullpath
