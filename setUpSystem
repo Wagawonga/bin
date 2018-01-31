@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# das File soll mit "sudo scropt" ausgeführt werden.
+# das File soll mit "sudo -u <udername> scropt" ausgeführt werden.
 # Das Skript ist für Debian ausgelegt!!!
 
 #vim einreichten:
@@ -10,18 +10,22 @@ git clone https://github.com/Wagawonga/Linux-Vimfiles.git dotfiles
 echo 'source ~/dotfiles/_vimrc.vim' > .vimrc
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 #vimPlugins installieren:
-vim -c ':colorsheme default' +PluginInstall 
+#noch keine vernünftige Lösung gefunden für script ausführung
+#vim -c ':colorsheme default' +PluginInstall 
 
 #Git einrichten:
 git config --global user.name "Daniel"
 git config --global user.email "none"
 
 #PS1 richtig einstellen:
-cat >> ~/.bashrc <<EOF
-#Einstellen von PS1
-if [ "$color_prompt" = yes ]; then
-    PS1='\n\[\033[0;35m\]`acpi | grep -E -o "[0-9]*%"`\[\033[00m\]:${debian_chroot:($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[1;31m\]`__git_ps1`\[\033[0;37m\]   \n$'
-else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-fi
-EOF
+#cat >>~/.bashrc <<-'EOF'
+
+
+    ##Einstellen von PS1
+    #if [ "$color_prompt" = yes ]; then
+        #PS1='\n\[\033[0;35m\]`acpi | grep -E -o "[0-9]*%"`\[\033[00m\]:${debian_chroot:($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[1;31m\]`__git_ps1`\[\033[0;37m\]   \n$'
+    #else
+    #PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    #fi
+#EOF
+
