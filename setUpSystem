@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# das File soll mit "sudo -u <udername> scropt" ausgeführt werden.
+# das File soll mit "sudo -u <username> scropt" ausgeführt werden.
 # Das Skript ist für Debian ausgelegt!!!
 
 #vim einreichten:
@@ -9,16 +9,13 @@ cd
 git clone https://github.com/Wagawonga/Linux-Vimfiles.git dotfiles
 echo 'source ~/dotfiles/_vimrc.vim' > .vimrc
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
 #vimPlugins installieren:
-#noch keine vernünftige Lösung gefunden für script ausführung
-#vim -c ':colorsheme default' +PluginInstall 
+vim +'colorsheme default' +PluginInstall +qall
 
 #Git einrichten:
 git config --global user.name "Daniel"
 git config --global user.email "none"
-
-#PS1 richtig einstellen:
-#cat >>~/.bashrc <<-'EOF'
 
 
     ##Einstellen von PS1
@@ -27,5 +24,11 @@ git config --global user.email "none"
     #else
     #PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
     #fi
-#EOF
 
+
+#zu .bashrc hinzufügen
+cat >> ~/.bashrc <<-'EOF'
+    
+    #hinzugefuegter tmux start.
+    bin/tmux_start.sh
+EOF
