@@ -23,6 +23,7 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim +'colorsheme default' +PluginInstall +qall
 
 #zu .bashrc hinzufügen
+apt-get -y install acpi   #Für die Anzeige des Akkustands in PS1.
 cat >> ~/.bashrc <<-'EOF'
     
     #hinzugefuegter tmux start.
