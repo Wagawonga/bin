@@ -3,6 +3,7 @@
 #TODO:  Abfrage ob zeilen in .vimrc und .bashrc schon hinzugefügt wurden.
 #       In dem Kontekt macht es Sinn die .bashrc Erweiterung in einen eigenes
 #       File in dotfiles auszuglagern!
+#TODO:  dotfiles/_gitconfig zur gitconfig hinzuf.
 
 # das File soll mit "sudo -u <username> script" ausgeführt werden.
 # Das Skript ist auf Debian ausgelegt!!!
