@@ -3,6 +3,10 @@
 # das File soll mit "sudo -u <username> script" ausgeführt werden.
 # Das Skript ist auf Debian ausgelegt!!!
 
+#Sytem auf neusten Stand bringen:
+apt-get update
+apt-get upgrade
+
 #Git einrichten:
 apt-get -y install git
 git config --global user.name "Daniel"
@@ -14,7 +18,7 @@ git clone https://github.com/Wagawonga/bin.git ~/bin
 
 #vim einreichten:
 apt-get -y install vim
-echo 'source ~/dotfiles/_vimrc.vim' > .vimrc
+echo 'source ~/dotfiles/_vimrc.vim' > ~/.vimrc
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim +'colorsheme default' +PluginInstall +qall
 
