@@ -24,7 +24,11 @@ vim +'colorsheme default' +PluginInstall +qall
 
 #zu .bashrc hinzufügen
 apt-get -y install acpi   #Für die Anzeige des Akkustands in PS1.
+apt-get -y install tmux
 cat >> ~/.bashrc <<-'EOF'
+    
+    #Vim als Standard:
+    export EDITOR=vim
     
     #hinzugefuegter tmux start.
     ~/bin/tmux_start.sh
