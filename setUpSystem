@@ -1,12 +1,14 @@
 #!/bin/bash
 
-#TODO:  Abfrage ob zeilen in .vimrc und .bashrc schon hinzugefügt wurden.
-#       In dem Kontekt macht es Sinn die .bashrc Erweiterung in einen eigenes
-#       File in dotfiles auszuglagern!
-#TODO:  dotfiles/_gitconfig zur gitconfig hinzuf.
-
-# das File soll mit "sudo -u <username> script" ausgeführt werden.
 # Das Skript ist auf Debian ausgelegt!!!
+
+if [ "$(whoami)" != "root" ]; then
+	echo
+    echo "DAS SKRIPT MUSS MIT ROOT RECHTEN AUSGEFUEHRT WERDEN!!!"
+    echo "ABBRUCH"
+    echo
+	exit 1
+fi
 
 #Sytem auf neusten Stand bringen:
 apt-get update
@@ -14,6 +16,7 @@ apt-get upgrade
 
 #Git einrichten:
 apt-get -y install git
+git config --global include.path "~/dotfiles/_gitconfig"
 git config --global user.name "Daniel"
 git config --global user.email "none"
 
@@ -28,16 +31,11 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim +'colorsheme default' +PluginInstall +qall
 
 #zu .bashrc hinzufügen
-apt-get -y install acpi   #Für die Anzeige des Akkustands in PS1.
+apt-get -y install acpi   #Fuer die Anzeige des Akkustands in PS1.
 apt-get -y install tmux
-cat >> ~/.bashrc <<-'EOF'
-    
-    #Vim als Standard:
-    export EDITOR=vim
-    
-    #hinzugefuegter tmux start.
-    ~/bin/tmux_start.sh
+RCLINE='source ~/dotfiles/_bashrc'
+if ! cat ~/.bashrc | grep -q "$RCLINE" ;then
+    echo $RCLINE >> ~/.bashrc 
+fi
+unset RCLINE
 
-    ##Einstellen von PS1
-    PS1='\n\[\033[0;35m\]`acpi | grep -E -o "[0-9]*%"`\[\033[00m\]:${debian_chroot:($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[1;31m\]`__git_ps1`\[\033[0;37m\]   \n$'
-EOF
