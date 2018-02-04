@@ -1,0 +1,52 @@
+#!/bin/bash
+
+#Dies solle in Tippprogramm werden, dass als ersten
+#Parameter ein Textfile erhaelt und diesen Text vom Benutzer#Tippen lässt. Bei einem
+#Fehler muss der gesamte Text von vorne eingetippt werden.
+#Features:
+#   1. Zeitmessung
+#   2. Log
+
+#Text einlesen:
+test=''
+if [ $1 ]; then
+    text="$(cat $1)";
+else
+    echo KEINE TEXTDATEIN ANGEGEBEN
+    exit 1;
+fi
+
+echo Zu schreibender Text:
+echo $text
+echo
+echo
+
+#Tasten lesen:
+ifsOri=$IFS
+count=0
+while true; do
+    IFS=''
+    #Zu schreiben Text anzeigen:
+    echo ${text:count:30}
+
+    #Buchstabe einlesen:
+    read -rsd '' -n1 input;
+    #echo -n $count
+
+    #Vergleich:
+    if [ $input != ${text:count:1}  ]; then
+        echo Fehler gemacht! ENDE!
+        exit 1
+    fi
+
+    IFS=$ifsOri
+    
+    count=$(( $count + 1 ))
+    
+    #Textende
+    echo ${input:count}
+    if [ ${#text} -le $count ];then
+        echo GEWONNEN!!!
+        exit 0
+    fi
+done
