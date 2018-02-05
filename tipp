@@ -4,9 +4,10 @@
 #Parameter ein Textfile erhaelt und diesen Text vom Benutzer
 #Tippen lässt. Bei einem
 #Fehler muss der gesamte Text von vorne eingetippt werden.
-#Features:
+#Features TODO:
 #   1. Zeitmessung
 #   2. Log
+#   3. Anschläge pro Minute anzeigen.
 
 #Text einlesen:
 test=''
