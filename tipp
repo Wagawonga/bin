@@ -8,6 +8,7 @@
 #   1. Zeitmessung
 #   2. Log
 #   3. Anschläge pro Minute anzeigen.
+#   4. Prozentanzeige & Zeitanzeige.
 
 #Text einlesen:
 test=''
@@ -18,8 +19,14 @@ else
     exit 1;
 fi
 
-echo Zu schreibender Text:
-echo $text
+echo
+echo '---------------------'
+echo 'Zeilen:  ' $(wc -l < $1)
+echo 'Wörter:  ' $(wc -w < $1)
+echo 'Zeichen: ' $(wc -m < $1)
+echo '---------------------'
+echo
+echo '- Los gehts! -'
 echo
 echo
 
