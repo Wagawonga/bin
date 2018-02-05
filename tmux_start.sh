@@ -2,8 +2,11 @@
 
 if [[ ! $TERM =~ screen ]] && [ -z $TMUX ]
 then
-    tmux new-session -d
-    tmux split-window -h
-    tmux select-pane -R
-    tmux attach-session -d
+    SESSION=main
+    if ! tmux has-session -t $SESSION; then
+        tmux new -d -s $SESSION
+        tmux split-window -h
+        tmux select-pane -R
+    fi
+    tmux attach -t $SESSION
 fi
