@@ -1,7 +1,8 @@
 #!/bin/bash
 
-#Dies solle in Tippprogramm werden, dass als ersten
-#Parameter ein Textfile erhaelt und diesen Text vom Benutzer#Tippen lässt. Bei einem
+#Dies soll ein Tippprogramm werden, dass als ersten
+#Parameter ein Textfile erhaelt und diesen Text vom Benutzer
+#Tippen lässt. Bei einem
 #Fehler muss der gesamte Text von vorne eingetippt werden.
 #Features:
 #   1. Zeitmessung
@@ -25,10 +26,11 @@ echo
 ifsOri=$IFS
 count=0
 while true; do
+    # Zu schreiben Text anzeigen:
+    echo -ne "\033[1A\033[0K"
     IFS=''
-    #Zu schreiben Text anzeigen:
-    echo ${text:count:30}
-
+    echo ${text:count:50} | cut -f1 -d$'\n' 
+    
     #Buchstabe einlesen:
     read -rsd '' -n1 input;
     #echo -n $count
@@ -44,7 +46,6 @@ while true; do
     count=$(( $count + 1 ))
     
     #Textende
-    echo ${input:count}
     if [ ${#text} -le $count ];then
         echo GEWONNEN!!!
         exit 0
