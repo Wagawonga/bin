@@ -34,7 +34,7 @@ vim +'colorsheme default' +PluginInstall +qall
 apt-get -y install acpi   #Fuer die Anzeige des Akkustands in PS1.
 apt-get -y install tmux
 RCLINE='source ~/dotfiles/_bashrc'
-if ! cat ~/.bashrc | grep -q "$RCLINE" ;then
+if ! grep -q "$RCLINE" ~/.bashrc ;then
     echo $RCLINE >> ~/.bashrc 
 fi
 unset RCLINE
