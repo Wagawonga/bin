@@ -1,49 +1,29 @@
 #!/bin/bash
 
-# Das Skript ist auf Debian ausgelegt!!!
-
-if [ "$(whoami)" != "root" ]; then
-    if [ $SUDO_USER == "root" ]; then
-        echo "SUDO_USER ZEIGT AUF ROOT!"
-    fi
-	echo
-    echo "DAS SKRIPT MUSS MIT ROOT RECHTEN AUSGEFUEHRT WERDEN!!!"
-    echo "ABBRUCH"
+if [ "$(whoami)" == "root" ]; then
     echo
-	exit 1
+    echo "SetUpSystem als Root aufgerufen: ABBRUCH!"
+    echo
+    exit 1
 fi
 
-#Sytem auf neusten Stand bringen:
-apt-get update
-apt-get upgrade
+#Git einrichten:
+git config --global include.path "~/dotfiles/_gitconfig"
+git config --global user.name "Daniel"
+git config --global user.email "none"
 
-#Programme installieren:
-apt-get -y install git
-apt-get -y install vim
+#Github persönliche Files runterladen:
+git clone https://github.com/Wagawonga/Linux-Vimfiles.git ~/dotfiles
+git clone https://github.com/Wagawonga/bin.git ~/bin
 
-(#Subshell fuer Userwechsel
-    su $SUDO_USER
+#vim einreichten:
+echo 'source ~/dotfiles/_vimrc.vim' > ~/.vimrc
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+vim +'colorsheme default' +PluginInstall +qall
 
-    #Git einrichten:
-    git config --global include.path "~/dotfiles/_gitconfig"
-    git config --global user.name "Daniel"
-    git config --global user.email "none"
-
-    #Github persönliche Files runterladen:
-    git clone https://github.com/Wagawonga/Linux-Vimfiles.git ~/dotfiles
-    git clone https://github.com/Wagawonga/bin.git ~/bin
-
-    #vim einreichten:
-    echo 'source ~/dotfiles/_vimrc.vim' > ~/.vimrc
-    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-    vim +'colorsheme default' +PluginInstall +qall
-
-    #zu .bashrc hinzufügen
-    apt-get -y install acpi   #Fuer die Anzeige des Akkustands in PS1.
-    apt-get -y install tmux
-    RCLINE='source ~/dotfiles/_bashrc'
-    if ! grep -q "$RCLINE" ~/.bashrc ;then
-        echo $RCLINE >> ~/.bashrc 
-    fi
-    unset RCLINE
-)
+#zu .bashrc hinzufügen
+RCLINE='source ~/dotfiles/_bashrc'
+if ! grep -q "$RCLINE" ~/.bashrc ;then
+    echo $RCLINE >> ~/.bashrc 
+fi
+unset RCLINE

@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Das Skript ist auf Debian ausgelegt!!!
+
+if [ "$(whoami)" != "root" ]; then
+	echo
+    echo "DAS SKRIPT MUSS MIT ROOT RECHTEN AUSGEFUEHRT WERDEN!!!"
+    echo "ABBRUCH"
+    echo
+	exit 1
+fi
+
+#Sytem auf neusten Stand bringen:
+apt-get -y update
+apt-get -y upgrade
+
+#Programme installieren:
+apt-get -y install git
+apt-get -y install vim
+apt-get -y install acpi   #Fuer die Anzeige des Akkustands in PS1.
+apt-get -y install tmux
+
+if [ ! $SUDO_USER == "root" ]; then
+    su $SUDO_USER -c "./setUpSystem"
+fi
