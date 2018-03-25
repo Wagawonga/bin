@@ -27,3 +27,6 @@ if ! grep -q "$RCLINE" ~/.bashrc ;then
     echo $RCLINE >> ~/.bashrc 
 fi
 unset RCLINE
+
+#Tmux config fuer 256 Farben kopieren
+cp  ~/dotfiles/.tmux.conf ~/
