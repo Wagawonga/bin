@@ -58,4 +58,7 @@ while true; do
         echo GEWONNEN!!!
         exit 0
     fi
+
+    #letzte Zeile löschen
+    echo -en "\r\033[K"
 done
