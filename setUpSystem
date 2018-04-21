@@ -29,4 +29,4 @@ fi
 unset RCLINE
 
 #Tmux config fuer 256 Farben kopieren
-cp  ~/dotfiles/.tmux.conf ~/
+echo 'source  ~/dotfiles/.tmux.conf' > ~/.tmux.conf
