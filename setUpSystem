@@ -1,4 +1,15 @@
-#!/bin/bash
+!/bin/bash
+
+function addLineToRC {
+    lineToAdd=$1
+    targetFile=$2
+    [ ! -f "$targetFile" ] && touch "$targetFile"
+    if ! grep -q "$lineToAdd" "$targetFile" ;then
+        echo "$lineToAdd" >> "$targetFile"
+    fi
+    unset targetFile
+    unset lineToAdd
+}
 
 if [ "$(whoami)" == "root" ]; then
     echo
@@ -16,17 +27,9 @@ git config --global user.email "none"
 git clone https://github.com/Wagawonga/Linux-Vimfiles.git ~/dotfiles
 git clone https://github.com/Wagawonga/bin.git ~/bin
 
-#vim einreichten:
-echo 'source ~/dotfiles/_vimrc.vim' > ~/.vimrc
+addLineToRC 'source ~/dotfiles/_vimrc.vim' ~/.vimrc
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim +'colorsheme default' +PluginInstall +qall
 
-#zu .bashrc hinzufügen
-RCLINE='source ~/dotfiles/_bashrc'
-if ! grep -q "$RCLINE" ~/.bashrc ;then
-    echo $RCLINE >> ~/.bashrc 
-fi
-unset RCLINE
-
-#Tmux config fuer 256 Farben kopieren
-echo 'source  ~/dotfiles/.tmux.conf' > ~/.tmux.conf
+addLineToRC 'source ~/dotfiles/_bashrc' ~/.bashrc
+addLineToRC 'source ~/dotfiles/_tmux.conf' ~/.tmux.conf
