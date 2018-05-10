@@ -1,6 +1,69 @@
 #!/bin/bash
 # Skript zum erstellen von Skripten
-fullpath='/home/daniel/bin/'$1
-echo '#!/bin/bash' >> $fullpath
+fullpath=$HOME"/bin/"$1
+
+if [ -f $fullpath ]; then
+    echo "Fehler: Name bereits vergeben"
+    exit 1
+fi
+touch $fullpath
+
+#Fuellen mit script dummy:
+cat >> $fullpath <<HERE_DOC_MAIN
+#!/bin/bash 
+# Automatisch erstellt mit Scripter
+
+# Versionshistorie mit Änderungen
+printVersion() {
+  cat <<HERE_DOC
+    V0.01 $(date +%Y-%m-%d)  Script created.
+HERE_DOC
+}
+
+# Beschreibung des Programms
+printHelp() {
+  #Die erste Zeile soll Informationen ueber die Momentane Version zeigen.
+  versionString=\$(printVersion | head -n1 | sed -e 's/^[[:space:]]*//')
+  cat <<HERE_DOC
+    $1 Version \$versionString
+    
+    HIER BESCHREIBUNG EINFUEGEN!!!
+
+    Parameter:
+      -v    Version information
+      -h    This help
+HERE_DOC
+}
+
+# Mainfunction:
+main() {
+
+  # Auswerten der Parameter
+  while [ \$# -gt 0 ]       #Solange die Anzahl der Parameter (\$#) größer 0
+  do                   
+    case \$1 in
+      "-h")
+          printHelp
+          exit 0
+        ;;
+      "-v")
+          printVersion
+          exit 0
+        ;;
+      *)
+          echo "Unbekannter Parameter: " \$1
+          exit 1
+        ;;
+    esac
+    shift
+  done
+
+}
+
+main \$@
+
+HERE_DOC_MAIN
+
+
 vim $fullpath
 chmod +x $fullpath
