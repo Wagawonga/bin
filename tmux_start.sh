@@ -5,7 +5,7 @@ then
     SESSION=main
     if ! tmux has-session -t $SESSION; then
         tmux new -d -s $SESSION
-        tmux split-window -h
+        #tmux split-window -h
         tmux select-pane -R
     fi
     tmux attach -t $SESSION
