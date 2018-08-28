@@ -14,12 +14,24 @@ fi
 apt-get -y update
 apt-get -y upgrade
 
+########################
 #Programme installieren:
-apt-get -y install curl
+#Vielelicht sollte ich das doch auslagern in ein eigens Skript,
+#so dass bei bedarf die Programme nachinstalliert werden können.
+#dann sollte ich auch das update und upgrade von oben mitnehmen!
+
+#locate zum finden von Dateien. Dabei wird eine Datenbank genutzt
+#und ist daher schneller als find. Das updatedb erstellt die erste
+#Datenbank
+apt-get -y install locate
+updatedb
+
+apt-get -y install curl   #für automatisierte downloads vond er Konsole aus
 apt-get -y install git
 apt-get -y install vim
 apt-get -y install acpi   #Fuer die Anzeige des Akkustands in PS1.
 apt-get -y install tmux
+########################
 
 if [ ! $SUDO_USER == "root" ]; then
     su $SUDO_USER -c "./setUpSystem"
