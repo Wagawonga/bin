@@ -1,4 +1,4 @@
-!/bin/bash
+#!/bin/bash
 
 function addLineToRC {
     lineToAdd=$1
@@ -23,13 +23,16 @@ git config --global include.path "~/dotfiles/_gitconfig"
 git config --global user.name "Daniel"
 git config --global user.email "none"
 
+#Um das __git_ps1 Problem zu lösen:
+curl -L https://raw.github.com/git/git/master/contrib/completion/git-prompt.sh > ~/.bash_git
+
 #Github persönliche Files runterladen:
 git clone https://github.com/Wagawonga/Linux-Vimfiles.git ~/dotfiles
 git clone https://github.com/Wagawonga/bin.git ~/bin
 
 addLineToRC 'source ~/dotfiles/_vimrc.vim' ~/.vimrc
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-vim +'colorsheme default' +PluginInstall +qall
+vim +'colorsheme defaul://raw.github.com/git/git/master/contrib/cot' +PluginInstall +qall
 
 addLineToRC 'source ~/dotfiles/_bashrc' ~/.bashrc
 addLineToRC 'source ~/dotfiles/_tmux.conf' ~/.tmux.conf
