@@ -31,6 +31,9 @@ apt-get -y install git
 apt-get -y install vim
 apt-get -y install acpi   #Fuer die Anzeige des Akkustands in PS1.
 apt-get -y install tmux
+apt-get -y install mutt
+apt-get -y install python3
+apt-get -y install python3-pip
 ########################
 
 if [ ! $SUDO_USER == "root" ]; then

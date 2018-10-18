@@ -1,0 +1,10 @@
+#!/bin/bash
+
+lineToAdd=$1
+targetFile=$2
+[ ! -f "$targetFile" ] && touch "$targetFile"
+if ! grep -q "$lineToAdd" "$targetFile" ;then
+    echo "$lineToAdd" >> "$targetFile"
+fi
+unset targetFile
+unset lineToAdd

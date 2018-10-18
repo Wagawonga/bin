@@ -1,22 +1,14 @@
 #!/bin/bash
-
-function addLineToRC {
-    lineToAdd=$1
-    targetFile=$2
-    [ ! -f "$targetFile" ] && touch "$targetFile"
-    if ! grep -q "$lineToAdd" "$targetFile" ;then
-        echo "$lineToAdd" >> "$targetFile"
-    fi
-    unset targetFile
-    unset lineToAdd
-}
-
 if [ "$(whoami)" == "root" ]; then
     echo
     echo "SetUpSystem als Root aufgerufen: ABBRUCH!"
     echo
     exit 1
 fi
+
+#Goobook für Mutt intallieren muss aber noch authentifiziert werden!
+pip3 install --user goobook
+~/.local/bin/goobook authenticate
 
 #Git einrichten:
 git config --global include.path "~/dotfiles/_gitconfig"
@@ -36,3 +28,5 @@ vim +'colorsheme defaul://raw.github.com/git/git/master/contrib/cot' +PluginInst
 
 addLineToRC 'source ~/dotfiles/_bashrc' ~/.bashrc
 addLineToRC 'source ~/dotfiles/_tmux.conf' ~/.tmux.conf
+./setUpMutt
+

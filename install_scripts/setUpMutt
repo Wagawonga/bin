@@ -1,0 +1,8 @@
+#!/bin/bash
+
+mkdir -p ~/.mutt/cache/headers
+mkdir ~/.mutt/cache/bodies
+touch ~/.mutt/certificates
+touch ~/.mutt/muttrc
+
+addLineToRC 'source ~/dotfiles/_muttrc' ~/.mutt/muttrc
