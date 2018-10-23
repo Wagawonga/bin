@@ -6,3 +6,5 @@ touch ~/.mutt/certificates
 touch ~/.mutt/muttrc
 
 addLineToRC 'source ~/dotfiles/_muttrc' ~/.mutt/muttrc
+#zum nutzten von w3m zum umwandeln von html:
+addLineToRC 'text/html; w3m -I %{charset} -T text/html; copiousoutput;' ~/.mutt/mailcap

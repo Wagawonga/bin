@@ -8,5 +8,5 @@ then
         #tmux split-window -h
         tmux select-pane -R
     fi
-    tmux attach -t $SESSION
+    tmux attach -dt $SESSION
 fi
