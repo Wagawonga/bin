@@ -1,4 +1,4 @@
-#!/data/data/com.termux/files/usr/bin/bash
+#!/bin/bash
 # Demonstriert den tput-Befehl
 # tput4
 Dline=`tput dl1`     # Zeile löschen

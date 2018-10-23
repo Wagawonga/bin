@@ -34,6 +34,7 @@ apt-get -y install tmux
 apt-get -y install mutt
 apt-get -y install python3
 apt-get -y install python3-pip
+apt-get -y gpm		    #Maus für das Terminal
 ########################
 
 if [ ! $SUDO_USER == "root" ]; then
