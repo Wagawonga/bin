@@ -34,5 +34,5 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh-syntax-highlighting
 addLineToRC 'source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh' ~/.zshrc
-
+pip3 install thefuck
 
