@@ -34,7 +34,9 @@ apt-get -y install tmux
 apt-get -y install mutt
 apt-get -y install python3
 apt-get -y install python3-pip
-apt-get -y gpm		    #Maus für das Terminal
+apt-get -y install gpm		    #Maus für das Terminal
+apt-get -y install googler
+apt-get -y install ack
 apt-get -y zsh
 chsh -s /bin/zsh    #zsh als Standardshell
 

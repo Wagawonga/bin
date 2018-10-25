@@ -6,9 +6,6 @@ if [ "$(whoami)" == "root" ]; then
     exit 1
 fi
 
-#Goobook für Mutt intallieren muss aber noch authentifiziert werden!
-pip3 install --user goobook
-~/.local/bin/goobook authenticate
 
 #Git einrichten:
 git config --global include.path "~/dotfiles/_gitconfig"
@@ -34,5 +31,8 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh-syntax-highlighting
 addLineToRC 'source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh' ~/.zshrc
-pip3 install thefuck
 
+pip3 install --user goobook #Goobook für Mutt intallieren muss aber noch authentifiziert werden!
+~/.local/bin/goobook authenticate
+pip3 install --user thefuck
+pip install --user maybe
