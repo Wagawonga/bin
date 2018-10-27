@@ -36,3 +36,7 @@ pip3 install --user goobook #Goobook für Mutt intallieren muss aber noch authen
 ~/.local/bin/goobook authenticate
 pip3 install --user thefuck
 pip install --user maybe
+
+#fish like suggestions
+git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+addLineToRC 'source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh' ~/.zshrc
