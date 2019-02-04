@@ -38,6 +38,7 @@ apt-get -y install gpm		    #Maus für das Terminal
 apt-get -y install googler
 apt-get -y install ack
 apt-get -y zsh
+apt-get -y psmisc #installieren von killall
 chsh -s /bin/zsh    #zsh als Standardshell
 
 ########################
