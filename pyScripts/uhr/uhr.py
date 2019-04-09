@@ -30,7 +30,7 @@ GBPin = {
             ( 7,  8, 99),
             ( 5,  6, 24),
             ( 3,  4, 35),
-            ( 1,  2, 26)
+            ( 1,  2, 36)
         ]
 }
 
@@ -131,15 +131,16 @@ def test_all_channels(step):
                 # Again be sure to call write if you disabled auto_write.
                 #tlc5947.write()
 
-def testLedOrder():
+def test_led_order():
     """ geht alle LEDs durch um zu schauen ob sie richtig zugeordnet wurden"""
     
     for zeile in GBPin:
-        for led in GBPin["zeile"]:
+        for led in GBPin[zeile]:
             for pinColor in led:
-                tlc5947[pinColor] = 200
-               time.sleep(0.3)
-               tlc5947[pinColor] = 0
+                if pinColor != 99:
+                   tlc5947[pinColor - 1] = 200
+                   time.sleep(0.5)
+                   tlc5947[pinColor - 1] = 0
 
 def getBinTime():
     """ Als Rückgabe erhält man 3 Arrays [s, m, h] die Sekunden, Minuten und Stunden
