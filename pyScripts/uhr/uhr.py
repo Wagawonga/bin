@@ -21,7 +21,7 @@ LATCH = digitalio.DigitalInOut(board.CE0)
 # will automatically write out changes as soon as they happen to a channel, but
 # if you need more control or atomic updates of multiple channels then disable
 # and manually call write as shown below.
-tlc5947 = adafruit_tlc5947.TLC5947(spi, LATCH, num_drivers=DRIVER_COUNT, auto_write=False)
+tlc5947 = adafruit_tlc5947.TLC5947(spi, LATCH, num_drivers=DRIVER_COUNT, auto_write=True)
 
 # There are two ways to set channel PWM values. The first is by getting
 # a PWMOut object that acts like the built-in PWMOut and can be used anywhere
@@ -87,6 +87,8 @@ def test_all_channels(step):
 
     while True:
         for pin in range(DRIVER_COUNT*24):
+            print(pin)
+
             # Brighten:
             # for pwm in range(start_pwm, end_pwm, step):
                 # tlc5947[pin] = pwm
@@ -137,6 +139,7 @@ if __name__ == "__main__":
     DELAY = 0.1
     try:
         while True:
+            print("Iteration Start")
             time.sleep(DELAY)
             mainloop()
 
