@@ -5,6 +5,36 @@ import adafruit_tlc5947
 import time
 import datetime
 
+GBPin = {
+    "hour"  :
+        [
+            (46, 26, 27),
+            (48, 47, 45),
+            (13, 25, 44),
+            (39, 38, 43),
+            (41, 40, 42)
+        ],
+    "min"   :
+        [
+            (17, 16, 15),
+            (19, 18, 14),
+            (21, 20, 37),
+            (23, 22, 28),
+            (33, 34, 29),
+            (31, 32, 30)
+        ],
+    "sec"   :
+        [
+            (11, 12, 99),
+            ( 9, 10, 99),
+            ( 7,  8, 99),
+            ( 5,  6, 24),
+            ( 3,  4, 35),
+            ( 1,  2, 26)
+        ]
+}
+
+
 # Try to great a Digital input 
 pin = digitalio.DigitalInOut(board.D4) 
 
@@ -90,19 +120,26 @@ def test_all_channels(step):
             print(pin)
 
             # Brighten:
-            # for pwm in range(start_pwm, end_pwm, step):
-                # tlc5947[pin] = pwm
-                # # Again be sure to call write if you disabled auto_write.
-                # #tlc5947.write()
+            for pwm in range(start_pwm, end_pwm, step):
+                tlc5947[pin] = pwm
+                # Again be sure to call write if you disabled auto_write.
+                #tlc5947.write()
 
-            # # Dim:
-            # for pwm in range(end_pwm, start_pwm, 0 -step):
-                # tlc5947[pin] = pwm
-                # # Again be sure to call write if you disabled auto_write.
-                # #tlc5947.write()
-            tlc5947[pin] = 2000
-            input('Taste druecken')
-            tlc5947[pin] = 0
+            # Dim:
+            for pwm in range(end_pwm, start_pwm, 0 -step):
+                tlc5947[pin] = pwm
+                # Again be sure to call write if you disabled auto_write.
+                #tlc5947.write()
+
+def testLedOrder():
+    """ geht alle LEDs durch um zu schauen ob sie richtig zugeordnet wurden"""
+    
+    for zeile in GBPin:
+        for led in GBPin["zeile"]:
+            for pinColor in led:
+                tlc5947[pinColor] = 200
+               time.sleep(0.3)
+               tlc5947[pinColor] = 0
 
 def getBinTime():
     """ Als Rückgabe erhält man 3 Arrays [s, m, h] die Sekunden, Minuten und Stunden
@@ -130,8 +167,7 @@ def mainloop():
     """
 
     #first_last()
-    test_all_channels(32)
-    tlc5947.write()
+    test_led_order();
 
 #----------
 # Choose here which function to try:
