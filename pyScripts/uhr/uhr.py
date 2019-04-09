@@ -88,17 +88,19 @@ def test_all_channels(step):
     while True:
         for pin in range(DRIVER_COUNT*24):
             # Brighten:
-            for pwm in range(start_pwm, end_pwm, step):
-                tlc5947[pin] = pwm
-                # Again be sure to call write if you disabled auto_write.
-                #tlc5947.write()
+            # for pwm in range(start_pwm, end_pwm, step):
+                # tlc5947[pin] = pwm
+                # # Again be sure to call write if you disabled auto_write.
+                # #tlc5947.write()
 
-            # Dim:
-            for pwm in range(end_pwm, start_pwm, 0 -step):
-                tlc5947[pin] = pwm
-                # Again be sure to call write if you disabled auto_write.
-                #tlc5947.write()
-
+            # # Dim:
+            # for pwm in range(end_pwm, start_pwm, 0 -step):
+                # tlc5947[pin] = pwm
+                # # Again be sure to call write if you disabled auto_write.
+                # #tlc5947.write()
+            tlc5947[pin] = 2000
+            input('Taste drücken')
+            tlc5947[pin] = 0
 
 def getBinTime():
     """ Als Rückgabe erhält man 3 Arrays [s, m, h] die Sekunden, Minuten und Stunden
