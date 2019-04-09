@@ -101,7 +101,7 @@ def test_all_channels(step):
                 # # Again be sure to call write if you disabled auto_write.
                 # #tlc5947.write()
             tlc5947[pin] = 2000
-            input('Taste drücken')
+            input('Taste druecken')
             tlc5947[pin] = 0
 
 def getBinTime():
