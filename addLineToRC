@@ -5,6 +5,8 @@ targetFile=$2
 [ ! -f "$targetFile" ] && touch "$targetFile"
 if ! grep -q "$lineToAdd" "$targetFile" ;then
     echo "$lineToAdd" >> "$targetFile"
+else
+    echo "Line bereits in File vorhanden; File=$targetFile LINE=$lineToAdd"  
 fi
 unset targetFile
 unset lineToAdd

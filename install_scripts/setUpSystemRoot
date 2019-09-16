@@ -41,6 +41,9 @@ apt-get -y zsh
 apt-get -y psmisc #installieren von killall
 chsh -s /bin/zsh    #zsh als Standardshell
 
+#Folgedes sehr gefährlich! deswegen raus!
+#../addLineToRC "$SUDO_USER ALL=(ALL) NOPASSWD: loadkeys" /etc/sudoers
+
 ########################
 
 if [ ! $SUDO_USER == "root" ]; then

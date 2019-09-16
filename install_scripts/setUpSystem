@@ -19,18 +19,18 @@ curl -L https://raw.github.com/git/git/master/contrib/completion/git-prompt.sh >
 git clone https://github.com/Wagawonga/Linux-Vimfiles.git ~/dotfiles
 git clone https://github.com/Wagawonga/bin.git ~/bin
 
-addLineToRC 'source ~/dotfiles/_vimrc.vim' ~/.vimrc
+../addLineToRC 'source ~/dotfiles/_vimrc.vim' ~/.vimrc
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim +'colorsheme defaul://raw.github.com/git/git/master/contrib/cot' +PluginInstall +qall
 
-addLineToRC 'source ~/dotfiles/_bashrc' ~/.bashrc
-addLineToRC 'source ~/dotfiles/_tmux.conf' ~/.tmux.conf
+../addLineToRC 'source ~/dotfiles/_bashrc' ~/.bashrc
+../addLineToRC 'source ~/dotfiles/_tmux.conf' ~/.tmux.conf
 ./setUpMutt
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh-syntax-highlighting
-addLineToRC 'source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh' ~/.zshrc
+../addLineToRC 'source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh' ~/.zshrc
 
 pip3 install --user goobook #Goobook für Mutt intallieren muss aber noch authentifiziert werden!
 ~/.local/bin/goobook authenticate
@@ -39,4 +39,4 @@ pip install --user maybe
 
 #fish like suggestions
 git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
-addLineToRC 'source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh' ~/.zshrc
+../addLineToRC 'source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh' ~/.zshrc
